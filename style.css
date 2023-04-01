@@ -33,6 +33,7 @@ aside {
     height: 4em;
     background-color: #c8c8c8;
     justify-content: right;
+    outline: 1px solid;
 }
 input {
     padding: .40em;
@@ -49,9 +50,17 @@ table{
 table, th, td {
     border: 1px solid;
     border-collapse: collapse;
-    /* text-align: center; */
 }
 th {
     height: 40px;
-    border-bottom: 3px solid;
+    background-color: #c8c8c8;
+}
+#totalTable {
+    /* border: 1px solid; */
+}
+#submissionForm {
+    padding-bottom: 2%;
+}
+td:nth-child(even) {
+    background-color: #e0e0e0;
 }
