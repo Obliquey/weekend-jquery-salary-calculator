@@ -38,22 +38,14 @@ function submitInfo(event) {
 }
 
 function pushInfo() {
-    // get user input to push again, probably a better way to do this rather than taking data twice
-    // --------!FIGURE OUT BETTER WAY!---------
-    let firstNameInput = $('#firstName').val();
-    let lastNameInput = $('#lastName').val();
-    let idInput = Number($('#id').val());
-    let titleInput = $('#title').val();
-    let salaryInput = Number($('#salary').val());
-
-    // push information to the table
+    // push latest employeeObject to the table using object properties
     $('#tableBody').append(
         `<tr>
-            <td>${firstNameInput}</td>
-            <td>${lastNameInput}</td>
-            <td>${idInput}</td>
-            <td>${titleInput}</td>
-            <td>${salaryInput}</td>
+            <td>${employees[employees.length-1].firstName}</td>
+            <td>${employees[employees.length-1].lastName}</td>
+            <td>${employees[employees.length-1].id}</td>
+            <td>${employees[employees.length-1].title}</td>
+            <td>${employees[employees.length-1].salary}</td>
             <td><button class="deleteButton">Remove</button></td>
         </tr>`
     );
