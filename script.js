@@ -9,11 +9,13 @@ function onReady() {
 
     // create function to push submitted data to table
     $('#submitButton').on('click', pushInfo);
+
+    // create function to listen for deleteButton clicks, remove targeted employee
+    $('#tableBody').on('click', '.deleteButton', removeEmployee);
+
     // $('#submitButton').on('click', printInfo); //test funciton
 
-
-
-}
+} //end onReady
 
 // Do I need to worry about non-number + non-string input, and rejecting it? ---STRETCH GOAL?---
 function submitInfo(event) {
@@ -35,7 +37,7 @@ function submitInfo(event) {
         salary: salaryInput,
     })
 
-}
+} //end submitInfo
 
 function pushInfo() {
     // push latest employeeObject to the table using object properties
@@ -46,7 +48,9 @@ function pushInfo() {
             <td>${employees[employees.length-1].id}</td>
             <td>${employees[employees.length-1].title}</td>
             <td>${employees[employees.length-1].salary}</td>
-            <td><button class="deleteButton">Remove</button></td>
+            <td>
+                <button class="deleteButton">Remove</button>
+            </td>
         </tr>`
     );
 
@@ -57,8 +61,12 @@ function pushInfo() {
     $('#title').val('');
     $('#salary').val('');
 
-}
+} //end pushInfo
 
+function removeEmployee() {
+    $(this).parent().parent().remove();
+
+} //end removeEmployee
 
 // function printInfo() {
 //     console.log(employees);
