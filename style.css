@@ -1,57 +1,82 @@
-html{
+/* GENERAL ELEMENTS */
+html {
+    background: radial-gradient(circle farthest-side, #6dd5ed, #387989);
+}
+html, body{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     font-family: Arial, Helvetica, sans-serif;
+    align-items: center;
+    align-content: stretch;
 }
 header {
-    background-color: #a7bed3;
-    margin-top: -23px;
+    /* background-color: #a7bed3; */
+    margin-left: 100px;
+    margin-right: 100px;
     padding-top: 3%;
-    padding-bottom: 2%;
+    padding-bottom: 3px;
     text-align: center;
     font-size: 1.3em;
-}
-body {
-    margin: 0%;
-    padding: 0%;
-    border: 0px 50px 0px 50px;
-    border-style: solid;
-    border-color: #a7bed3;
     width: 100%;
+    flex-grow: 1;
 }
 main {
-    margin-top: 0%;
+    max-width: 75%;
+    justify-content: center;
+    flex-grow: 5;
 }
-table{
+
+/* SUBMISSION FORM */
+input {
+    padding: .25em;
+    width: 125px;
+    border: 1px solid;
+    border-radius: 5px;
+    margin: 1px;
+}
+#submitButton {
+    padding: .25em;
+    width: 13%;
+    border: 1px solid;
+    border-radius: 5px;
+}
+
+/* TABLE */
+h2{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+table {
     width: 100%;
-    text-align: center;
-}
-#tableBody {
+    border: 1px solid;
+    border-collapse: collapse;
     text-align: left;
+}
+th {
+    text-align: center;
+    background-color: #b2aeae;
 }
 table, th, td {
     border: 1px solid;
-    border-collapse: collapse;
-    margin: 0%;
 }
-th {
-    height: 40px;
-    background-color: #c8c8c8;
-}
-/* #totalTable {
-    /* border: 1px solid; */
-/* } */
-#submissionForm {
-    padding-bottom: 2%;
+tr:nth-child(odd) {
+    background-color: #f0eaea;
 }
 tr:nth-child(even) {
-    background-color: #e0e0e0;
+    background-color: #d1cece;
 }
-tr {
-    background-color: #efefef;
-}
-aside, h3 {
-    margin: 0%;
+#tableSalary {
     text-align: right;
-    padding-right: 2%;
+}
+#deleteButtons {
+    text-align: center;
+}
+
+/* FOOTER */
+aside {
+    background-color:;
+    text-align: right;
 }

@@ -45,6 +45,8 @@ function submitInfo(event) {
         salary: salaryInput,
     });
 
+    console.log("Employees upon addition:", employees);
+
 } //end submitInfo
 
 function pushInfo() {
@@ -60,7 +62,7 @@ function pushInfo() {
             <td id="tableID">${employees[employees.length-1].id}</td>
             <td id="tableTitle">${employees[employees.length-1].title}</td>
             <td id="tableSalary">$${formattedSalary}</td>
-            <td>
+            <td id="deleteButtons">
                 <button class="deleteButton">Remove</button>
             </td>
         </tr>`
@@ -86,14 +88,26 @@ function removeEmployee() {
     removedEmployeeSalary = removedEmployeeSalary.replace('$', '');
     removedEmployeeSalary = Number(removedEmployeeSalary.replace(',', ''));
 
+    // calculate and post updated total monthly cost
+    totalSalaries -= removedEmployeeSalary;
+    if (totalSalaries <= 20000) {
+        $('#totalCost').css('backgroundcolor', '#e0e0e0')
+    };
+    let postedSalaryTotal = totalSalaries.toLocaleString('en-US');
+
+    $('#specificTotal').text(`$${postedSalaryTotal}`);
+
     // Remove deleted employee from global array
-    for (let employee of employees) {
-        if (removedEmployeeName == employee.firstName && removedEmployeeID == employee.ID) {
-            employees - employee;
+    for (let i = 0; i < employees.length; i++) {
+        if (employees[i].firstName == removedEmployeeName && employees[i].id == removedEmployeeID) {
+            employees = employees.splice([i], 1)
         }
     }
+    
 
     $(this).parent().parent().remove();
+
+    console.log("Employees after employee removal:", employees);
 
 } //end removeEmployee
 
