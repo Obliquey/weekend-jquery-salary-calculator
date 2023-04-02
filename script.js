@@ -15,7 +15,7 @@ function onReady() {
     $('#tableBody').on('click', '.deleteButton', removeEmployee);
 
     // create function that uses employee info to calculate monthly costs and pushes this to the DOM
-    $('#submitButton').on('click', calculateCost);
+    $('#submitButton').on('click', addUpCost);
 
     // create function that removes employee salary from totalCost.
 
@@ -55,11 +55,11 @@ function pushInfo() {
 
     $('#tableBody').append(
         `<tr>
-            <td>${employees[employees.length-1].firstName}</td>
-            <td>${employees[employees.length-1].lastName}</td>
-            <td>${employees[employees.length-1].id}</td>
-            <td>${employees[employees.length-1].title}</td>
-            <td>$${formattedSalary}</td>
+            <td id="tableFirstName">${employees[employees.length-1].firstName}</td>
+            <td id="tableLastName">${employees[employees.length-1].lastName}</td>
+            <td id="tableID">${employees[employees.length-1].id}</td>
+            <td id="tableTitle">${employees[employees.length-1].title}</td>
+            <td id="tableSalary">$${formattedSalary}</td>
             <td>
                 <button class="deleteButton">Remove</button>
             </td>
@@ -76,11 +76,28 @@ function pushInfo() {
 } //end pushInfo
 
 function removeEmployee() {
+
+    //  Retrieve removed employee info, to use in subtracting from employees array and total monthly cost
+    let removedEmployeeName = $(this).parent().siblings("#tableFirstName").text();
+    let removedEmployeeID = $(this).parent().siblings("#tableID").text();
+
+    // format salary for subtraction from total
+    let removedEmployeeSalary = $(this).parent().siblings("#tableSalary").text();
+    removedEmployeeSalary = removedEmployeeSalary.replace('$', '');
+    removedEmployeeSalary = Number(removedEmployeeSalary.replace(',', ''));
+
+    // Remove deleted employee from global array
+    for (let employee of employees) {
+        if (removedEmployeeName == employee.firstName && removedEmployeeID == employee.ID) {
+            employees - employee;
+        }
+    }
+
     $(this).parent().parent().remove();
 
 } //end removeEmployee
 
-function calculateCost() {
+function addUpCost() {
     // Add most recent employee info to running salary total
     totalSalaries += employees[employees.length - 1].salary;
 

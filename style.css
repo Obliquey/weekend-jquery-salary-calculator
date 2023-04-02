@@ -21,7 +21,6 @@ body {
 }
 main {
     margin-top: 0%;
-    display: ;
 }
 table{
     width: 100%;
@@ -39,9 +38,9 @@ th {
     height: 40px;
     background-color: #c8c8c8;
 }
-#totalTable {
+/* #totalTable {
     /* border: 1px solid; */
-}
+/* } */
 #submissionForm {
     padding-bottom: 2%;
 }
