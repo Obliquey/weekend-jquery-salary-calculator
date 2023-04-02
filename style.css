@@ -76,7 +76,14 @@ tr:nth-child(even) {
 }
 
 /* FOOTER */
-aside {
-    background-color:;
+#totalCost {
+    background-color: white;
     text-align: right;
+    align-self: right;
+    width: auto;
+}
+h3 {
+    margin-top: 0%;
+    border: 1px solid;
+    border-collapse: collapse;
 }

@@ -11,13 +11,11 @@ function onReady() {
     // create function to push submitted data to table
     $('#submitButton').on('click', pushInfo);
 
-    // create function to listen for deleteButton clicks, remove targeted employee
-    $('#tableBody').on('click', '.deleteButton', removeEmployee);
-
     // create function that uses employee info to calculate monthly costs and pushes this to the DOM
     $('#submitButton').on('click', addUpCost);
 
-    // create function that removes employee salary from totalCost.
+    // create function to listen for deleteButton clicks, remove targeted employee
+    $('#tableBody').on('click', '.deleteButton', removeEmployee);
 
 
 } //end onReady
@@ -90,8 +88,9 @@ function removeEmployee() {
 
     // calculate and post updated total monthly cost
     totalSalaries -= removedEmployeeSalary;
-    if (totalSalaries <= 20000) {
-        $('#totalCost').css('backgroundcolor', '#e0e0e0')
+
+    if (totalSalaries < 20000) {
+        $('#totalCost').css('background-color', 'white')
     };
     let postedSalaryTotal = totalSalaries.toLocaleString('en-US');
 
@@ -100,7 +99,7 @@ function removeEmployee() {
     // Remove deleted employee from global array
     for (let i = 0; i < employees.length; i++) {
         if (employees[i].firstName == removedEmployeeName && employees[i].id == removedEmployeeID) {
-            employees = employees.splice([i], 1)
+            employees = employees.splice([i], 1);
         }
     }
     
@@ -124,7 +123,3 @@ function addUpCost() {
 
     $('#specificTotal').text(`$${postedSalaryTotal}`);
 } //end calculateCost
-// function printInfo() {
-//     console.log(employees);
-// }
-
