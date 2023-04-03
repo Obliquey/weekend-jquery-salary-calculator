@@ -32,7 +32,10 @@ function submitInfo(event) {
     let salaryInput = $('#salary').val();
 
     // In case salary was submitted with commas 
-    salaryInput = Number(salaryInput.replace(/,/g, ''));
+    salaryInput = salaryInput.replace(/,/g, '');
+    if (salaryInput.charAt(0) == '$') {
+        salaryInput = Number(salaryInput.slice(1, salaryInput.length));
+    }
 
     // push data to employees array as full object
     employees.push ({
@@ -42,17 +45,14 @@ function submitInfo(event) {
         title: titleInput,
         salary: salaryInput,
     });
-
-    console.log("Employees upon addition:", employees);
-
 } //end submitInfo
 
 function pushInfo() {
     // push latest employeeObject to the table using object properties
     let num = employees[employees.length - 1].salary;
-
     let formattedSalary = num.toLocaleString("en-US");
 
+    // just realizing that I could probably have been more accurate to stick this entire thing in a for loop.Then, each time an employee is added or removed, the table would automatically update as it re-runs the for loop, adding the employees currently in the array to the table.
     $('#tableBody').append(
         `<tr>
             <td id="tableFirstName">${employees[employees.length-1].firstName}</td>
@@ -84,7 +84,7 @@ function removeEmployee() {
     // format salary for subtraction from total
     let removedEmployeeSalary = $(this).parent().siblings("#tableSalary").text();
     removedEmployeeSalary = removedEmployeeSalary.replace('$', '');
-    removedEmployeeSalary = Number(removedEmployeeSalary.replace(',', ''));
+    removedEmployeeSalary = Number(removedEmployeeSalary.replace(/,/g, ''));
 
     // calculate and post updated total monthly cost
     totalSalaries -= removedEmployeeSalary;
@@ -101,19 +101,16 @@ function removeEmployee() {
         if (employees[i].firstName == removedEmployeeName && employees[i].id == removedEmployeeID) {
             employees = employees.splice([i], 1);
         }
-    }
-    
+    };
 
     $(this).parent().parent().remove();
-
-    console.log("Employees after employee removal:", employees);
-
 } //end removeEmployee
 
 function addUpCost() {
     // Add most recent employee info to running salary total
     totalSalaries += employees[employees.length - 1].salary;
 
+    // another idea would be to use a for loop on the employees array, so that each time an employee is added or removed it runs, totalling up the employees.salaries and pushing the total to the DOM
     if (totalSalaries > 20000) {
         $('#totalCost').css('background-color', 'red');
     }
