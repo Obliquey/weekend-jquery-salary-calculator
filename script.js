@@ -88,11 +88,12 @@ function removeEmployee() {
 
     // calculate and post updated total monthly cost
     totalSalaries -= removedEmployeeSalary;
+    let monthlyTotal = (totalSalaries / 12);
 
-    if (totalSalaries < 20000) {
+    if (monthlyTotal < 20000) {
         $('#totalCost').css('background-color', 'white')
     };
-    let postedSalaryTotal = totalSalaries.toLocaleString('en-US');
+    let postedSalaryTotal = monthlyTotal.toLocaleString('en-US');
 
     $('#specificTotal').text(`$${postedSalaryTotal}`);
 
@@ -111,12 +112,14 @@ function addUpCost() {
     totalSalaries += employees[employees.length - 1].salary;
 
     // another idea would be to use a for loop on the employees array, so that each time an employee is added or removed it runs, totalling up the employees.salaries and pushing the total to the DOM
-    if (totalSalaries > 20000) {
+    let monthlyTotal = (totalSalaries / 12);
+
+    if (monthlyTotal > 20000) {
         $('#totalCost').css('background-color', 'red');
     }
 
     // convert totalSalaries to formatted string for pushing to DOM
-    let postedSalaryTotal = totalSalaries.toLocaleString("en-US");
+    let postedSalaryTotal = monthlyTotal.toLocaleString("en-US");
 
     $('#specificTotal').text(`$${postedSalaryTotal}`);
 } //end calculateCost
